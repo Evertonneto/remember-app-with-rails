@@ -1,0 +1,48 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Anotações</h1>
+<div class=" d-flex flex-column align-center">  
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Id</th>
+      <th scope="col">Anotação</th>
+      <th scope="col">Criado em</th>
+      <th scope="col">Ações </th>
+    </tr>
+  </thead>
+  <tbody>
+   <% @anottations.each do |anottation| %>
+    <tr>
+        <td></td>
+        <td><%= anottation.id %></td>
+        <td><%= simple_format(anottation.body) %></td>
+        <td><%= l(anottation.created_at) %></td>
+        <td>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      anottation_path(anottation), :class => 'btn btn-info btn-xs' %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_anottation_path(anottation), :class => 'btn btn-warning btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      anottation_path(anottation),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+  
+    <% end %>
+  </tbody>
+</table>
+
+
+</div>
+
+
+
+
+<%= link_to t("new"), new_anottation_path, class: "btn btn-primary"%>
+
+

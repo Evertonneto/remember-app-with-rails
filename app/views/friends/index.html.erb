@@ -1,0 +1,50 @@
+<p style="color: green"><%= notice %></p>
+
+<h1 >Amigos</h1>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Id</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Endereço</th>
+      <th scope="col">Email</th>
+      <th scope="col">Telefone</th>
+      <th scope="col">Criado em</th>
+      <th scope="col">Ações</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+   <% @friends.each do |friend| %>
+    <tr>
+        <td></td>
+        <td><%= friend.id %></td>
+        <td><%= friend.name %></td>
+        <td><%= friend.address %></td>
+        <td><%= friend.email %></td>
+        <td><%= friend.phone %></td>
+        <td><%= l(friend.created_at) %></td>
+        <td>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      friend_path(friend), :class => 'btn btn-info btn-xs' %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_friend_path(friend), :class => 'btn btn-warning btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      friend_path(friend),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+  
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t("new"), new_friend_path, class: "btn btn-primary float-start" %>
+
+<%= paginate @friends, class: "pagination"%>
