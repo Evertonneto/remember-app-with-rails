@@ -1,3 +1,3 @@
 class Anottation < ApplicationRecord
-  paginates_per 8
+  paginates_per 5
 end
